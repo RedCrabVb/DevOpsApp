@@ -11,7 +11,8 @@ name: Java CI with Maven
 on:
   push:
   release:
-    types: [published]
+    types: [created]
+
 jobs:
   build:
 
@@ -29,9 +30,9 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Upload to Release
-        if: github.event_name == 'release'
-        uses: RedCrabVb/DevOpsApp@master
-        with:
-          args: target/DevOpsApp-1.0-SNAPSHOT.jar application/java-archive
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      if: github.event_name == 'release'
+      uses: RedCrabVb/DevOpsApp@master
+      with:
+        args: target/DevOpsApp-1.0-SNAPSHOT.jar application/java-archive
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
