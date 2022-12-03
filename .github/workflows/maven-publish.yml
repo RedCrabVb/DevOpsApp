@@ -29,8 +29,9 @@ jobs:
       run: mvn -B package --file pom.xml
       
     - name: Upload to Release
-      uses: RedCrabVb/DevOpsApp@master
+      if: github.event_name == 'release'
+      uses: JasonEtco/upload-to-release@master
       with:
-        args: target/DevOpsApp-1.0-SNAPSHOT.jar application/java-archive
+        args: target/MyGreatJavaSoftware.jar application/java-archive
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
