@@ -27,8 +27,10 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-
-#     - name: Publish to GitHub Packages Apache Maven
-#       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
-#       env:
-#         GITHUB_TOKEN: ${{ github.token }}
+      
+    - name: Upload to Release
+      uses: RedCrabVb/DevOpsApp@master
+      with:
+        args: target/DevOpsApp-1.0-SNAPSHOT.jar application/java-archive
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
