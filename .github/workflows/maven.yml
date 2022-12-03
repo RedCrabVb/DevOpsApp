@@ -21,7 +21,8 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-#     - name: Upload to Release
+    - name: Upload to Release
+      run: ls -l
 #       if: github.event_name == 'release'
 #       uses: RedCrabVb/DevOpsApp@master
 #       with:
